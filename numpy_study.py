@@ -1,6 +1,14 @@
 import numpy as np
 
 # 넘파이 공부
+
+a1 = np.array([1, 2, 3, 4, 5])
+a2 = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]])
+a3 = np.array([[[1, 2, 3], [4, 5, 6], [7, 8, 9]], 
+                   [[1, 2, 3], [4, 5, 6], [7, 8, 9]], 
+                   [[1, 2, 3], [4, 5, 6], [7, 8, 9]], 
+                   [[1, 2, 3], [4, 5, 6], [7, 8, 9]]])
+
 # 1차원
 def array_1():
     a1 = np.array([1, 2, 3, 4, 5])
@@ -75,10 +83,64 @@ def method_2():
     linspace = np.linspace(0, 1, 5) # 0부터 1까지 균등한 간격으로 5개의 요소를 가진 배열 생성
     print(linspace)
     # logspace() = 범위 내에서 균등간격으로 로그 스케일로 배열 생성
+    logspace = np.logspace(0.1, 1, 20)
+    print(logspace)
+
+def random():
+    # random.random() = 랜덤한 수의 배열 생성
+    random = np.random.random((3, 3)) # 3x3 구조의 1차원 행렬의 랜덤한 배열 생성 * 리스트 형태로 지정
+    print(random)
+    # random.randint() = 일정 구간의 랜덤 정수의 배열 생성
+    randint = np.random.randint(0, 10, (3, 3)) # 0부터 10까지 정수 중 랜덤으로 3x3구조 1차원 행렬 배열 생성
+    print(randint)
+    # random.normal() =  정규분포를 고려한 랜덤한 수의 배열 생성 (평균=0, 표준편차=1, 3x3 배열)
+    normal = np.random.normal(0, 1, (3, 3)) # 0부터 1까지 표준편차를 고려하여 3x3구조 1차원 행렬 배열 생성
+    print(normal)
+    # random.rand() = 균등분포를 고려한 랜덤한 수의 배열 생성
+    rand = np.random.rand(3, 3) # 3x3구조 1차원 행렬 배열 생성
+    print(rand)
+    # random.randn() = 표준 정규 분포를 고려한 랜덤한 수의 배열 생성
+    randn = np.random.randn(3, 3) # 3x3구조 1차원 행렬 배열 생성
+    print(randn)
+    
+def dtype():
+    # 사용방법 dtype=
+    zeros = np.zeros(20, dtype=int) # 정수로 된 0을 20개 리스트로 생성
+    print(zeros)
+    ones = np.ones((3, 3), dtype=bool) # 3x3구조 1차원 배열을 True와 False 요소로 구성
+    print(ones)
+    full = np.full((3, 3), 1.0,dtype=float) # 3x3구조 1차원 배열을 1.0(float)요소로 구성
+    print(full)
+
+def dates():
+    date = np.array('2020-01-01', dtype=np.datetime64) # 문자를 날짜 타입으로 변환
+    print(date)
+    print(date + np.arange(12))
+    datetime = np.datetime64('2020-06-01 12:00') # 문자를 시간 타입으로 변환
+    print(datetime)
+    datetime_ns = np.datetime64('2020-06-01 12:00:12.34', 'ns') # 문자를 시간 타입 + 나노초까지 변환
+    print(datetime_ns)
+
+def array_info(array):
+    print(array)
+    # array 값을 a1(1차원 배열)
+    print("ndim:", array.ndim) # 디맨션의 개수 = 1차원
+    print("shape:", array.shape) # 5개의 element의 개수
+    print("dtype:", array.dtype) # 정수값
+    print("size:", array.size) # 5개의 element의 개수
+    print("itemsize:", array.itemsize) # 하나의 element가 8byte를 가지고 있다.
+    print("nbytes:", array.nbytes) # 전체의 element가 40byte를 가지고 있다. (8byte x 5개 element = 40)
+    print("strides:", array.strides) # 다음 element로 넘어가기 위한 바이트 (1 -> 2 = 8바이트가 필요)
+    # 2차원의 경우 strides(다음 행을 넘어가기 위해 필요한 byte = 한 행의 요소 갯수 x byte, element하나를 넘어가기 위해 필요한 byte)
+    # 3차원의 경우 strides(다음 차원을 넘어가기 위해 필요한 byte = 한 차원 요소 갯수 x byte, 다음 행을 넘어가기 위해 필요한 byte, element하나를 넘어가기 위해 필요한 byte)
 
 if __name__ == "__main__":
     # array_1() # 1차원 배열
     # array_2() # 2차원 배열
     # array_3() # 3차원 배열
     # method_1() # 다양한 매소드(방법)1
-    method_2() # 다양한 매소드(방법)2
+    # method_2() # 다양한 매소드(방법)2
+    # random() # 랜덤 값으로 배열 생성
+    # dtype() # 숫자들의 타입을 이용한 배열 생성
+    dates() # 날짜/시간을 이용한 배열 생성
+    array_info(a3)
